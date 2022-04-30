@@ -1,0 +1,122 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+# Experiment 6  
+
+**Name:** Jaswinderpal Singh\
+**Class:** M.Sc. Statistics, Sem 1\
+**Date:** 08 November 2021  
+   
+**1. Aim:** To Create a file with name ‘test’ using data frame having specified variables   
+
+```{r}
+data<-read.csv("test.csv")
+attach(data)
+data$sex[data$sex==1]<-"male"
+data$sex[data$sex==2]<-"female"
+data$mutation[data$mutation==1]<-"mutated"
+data$mutation[data$mutation==0]<-"not mutated"
+data$locality[data$locality==1]<-"rural"
+data$locality[data$locality==2]<-"urban"
+data$religion[data$religion==1]<-"hindu"
+data$religion[data$religion==2]<-"muslim"
+data$religion[data$religion==3]<-"sikh"
+data$religion[data$religion==4]<-"chritian"
+```
+(a) To Use head and tail command to display the first 10 top and bottom observations along with variable name
+
+```{r}
+head(data,10)
+tail(data,10)
+```
+(b) To Extract each variable individually from data frame   
+
+```{r}
+data$mutation
+data$age
+data$locality
+data$sex
+data$religion
+```
+c) Make a 2 x 2 table of gender and locality using ‘table’ command
+```{r}
+table<-table(sex,locality)
+table
+```
+(d),(e) To find association between locality and gender using (i) Yule’s coefficient Q_AB, (ii) Coefficient of Colligation Y_AB, (iii) Coefficient V_AB. Interpret your result.
+```{r}
+#Yule's Coefficient
+Q_AB = (19*5-11*15)/(19*5+11*15)
+Q_AB
+#Coefficient of colligation
+Y_AB = (sqrt(19*5)-sqrt(11*15))/(sqrt(19*5)+sqrt(11*15))
+Y_AB
+#V_AB
+V_AB = (19*5-11*15)/sqrt(30*20*34*16)
+```
+(f) Identifying the structure of your file using ‘str’ command and dimensional of file using ‘dim’ command
+```{r}
+str(data)
+dim(data)
+```
+\newpage  
+**2. Aim:** To Generate given vectors a,b,c. Combine them in vector‘d’ using (i) data frame (ii) list, and observe the difference (iii) identify the class of ‘d’
+```{r}
+a<-c(34,35,36,39)
+b<-c(15,14,37,45)
+c<-c(1,2)  
+d<-data.frame(a,b,c)
+d
+d1<-list(a,b,c)
+d1
+class(d)
+class(d1)
+```
+\newpage
+**3. Aim:** To generate matrices A and B and carry out matrix computations
+```{r}
+A<-matrix(c(11,14,19,24,25,29,30,35,39),nrow=3,byrow=3)
+A
+B<-matrix(c(8, 9, 10, 11,14,13, 20, 22, 28),nrow=3,ncol=3 )
+B
+#(i)
+A+B
+#(ii)
+A%*%B
+#(iii)
+A*B
+#(iv)
+det(A)
+#(v)
+diag(B)
+#(vi) Transpose of A
+A
+t(A)
+#(vii) Inverse of A and B matrices
+A
+# inverse of A
+solve(A)
+B
+# inverse of B
+solve(B)
+#(viii)
+library(Matrix)
+eigen(A)
+#(ix)
+rank(A)
+rankMatrix(A)
+```
+\newpage
+**4. Aim**   
+(a) To Generate a 3 x 4 matrix ‘C’ with all elements 5.
+```{r}
+C<-matrix(c(5),nrow=3,ncol=4)
+C
+```
+(b) Generate 5 x 4 matrix ‘D’ with elements 1:20.
+```{r}
+D<-matrix(1:20,nrow=5,ncol=4)
+D
+```

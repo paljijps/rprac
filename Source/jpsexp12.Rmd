@@ -1,0 +1,122 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+
+# Experiment 12
+
+**Name:** Jaswinderpal Singh\
+**Class:** M.Sc. Statistics, Sem 1\
+**Date:** December 8, 2021
+
+## **2. Aim:** To test whether population mean is equal to \$10 at 5% level of significance.
+
+*Define* $$H_0 : \mu = 10$$\
+$$H_1 : \mu \neq 10$$
+
+```{r}
+n = 64
+sig = 6
+xbar = 12
+
+Z = (xbar - 10)/(sig/sqrt(n))  # Z Statistic
+Z
+
+# Critical Values two sided
+c(qnorm(0.05/2),qnorm(0.05/2,lower.tail = F)) 
+
+# 95% confidence interval
+c(xbar- qnorm(0.05/2,lower.tail = F)*(sig/sqrt(n)),
+xbar+ qnorm(0.05/2,lower.tail = F)*(sig/sqrt(n))) 
+```
+
+Here $$|Z| > z_{\alpha/2} $$\
+$\therefore H_0$ is rejected.
+
+\newpage
+
+## **3. Aim:** To test the difference of two population means at 1% level of significance.
+
+*Define*\
+$$H_0 : \mu_1 = \mu_2$$\
+$$H_1 : \mu_1 \neq \mu_2$$
+
+```{r}
+n1 = 400
+n2 = 400
+x1bar = 250
+x2bar = 220
+sig1 = 40
+sig2 = 55
+SE = sqrt(sig1^2/n1 + sig2^2/n2)  # Standard Error
+
+Z1 = ((x1bar - x2bar)-0) /SE  # Z Statistic
+Z1
+
+# two sided
+# Critical Value at 5% level of significance
+c(qnorm(0.01/2),qnorm(0.01/2,lower.tail = F)) 
+
+# 99% confidence interval
+c((x1bar - x2bar)- qnorm(0.01/2,lower.tail = F)*SE,
+(x1bar - x2bar)+ qnorm(0.01/2,lower.tail = F)*SE) 
+```
+
+Here $$|Z| > z_{\alpha /2}$$\
+$\therefore H_0$ is rejected.\
+\newpage
+
+## **4. Aim:** To test whether population proportion is more than 80% at 5% level of significance
+
+*Define*\
+$$H_0 : P = 0.80$$\
+$$H_1 : P > 0.80$$
+
+```{r}
+P = 0.80
+Q = 1-P
+X = 18
+n3 = 20
+p = X/n3
+Z2 = (p-P)/sqrt(P*Q/n3)   # Z Statistic
+Z2
+
+# right tailed
+# Critical Values at 5% level of significance
+qnorm(0.05, lower.tail = F)
+```
+
+Here $$Z < z_\alpha$$\
+$\therefore H_0$ is accepted.\
+\newpage
+
+## **5. Aim:** To test whether the difference between two proportions is significant
+
+*Define*\
+$$H_0 : P_1 = P_2$$\
+$$H_0 : P_1 \neq P_2$$
+
+```{r}
+n3 = 900
+n4 = 1600
+p1 = 0.30
+p2 = 0.18
+P_hat = (n3*p1+n4*p2)/(n3+n4)
+Q_hat = 1- P_hat
+se = sqrt(P_hat*Q_hat*(1/n3 + 1/n4))
+  
+Z3 = (p1-p2)/se  # Z Statistic
+Z3
+
+# two sided
+# Critical Value at 5% level of significance
+c(qnorm(0.05/2), qnorm(0.05/2, lower.tail = F))
+
+# 95% Confidence Interval
+c((p1 - p2) - qnorm(0.05/2, lower.tail = F)*se,
+(p1 - p2) + qnorm(0.05/2, lower.tail = F)*se)
+```
+
+Here $$|Z| > z_{\alpha/2}$$\
+$\therefore H_0$ is rejected.

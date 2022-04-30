@@ -1,0 +1,68 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+
+# Experiment 11
+
+**Name:** Jaswinderpal Singh\
+**Class:** M.Sc. Statistics, Sem 1\
+**Date:** December 6, 2021
+
+## **3. Aim:** To Generate a random sample from binomial distribution and test the goodness of fit.
+
+```{r,warning=FALSE}
+library(grid)
+library(vcd)
+x = rbinom(350,10,0.5)
+table(x)
+gf = goodfit(x,type="binomial",method="MinChisq")
+summary(gf)
+```
+
+## **4. Aim:** To Generate a random sample from Poisson distribution and test the goodness of fit.
+
+```{r,warning=FALSE}
+y = rpois(300,5)
+table(y)
+Gf = goodfit(y,type="pois",method="MinChisq")
+summary(Gf)
+```
+
+\newpage
+
+## **5. Aim:** To Generate a sample size 100 between 1:10 with replacement and check whether Binomial or Poisson distribution fits well to this data.
+
+```{r,warning=FALSE}
+z = sample(1:10,100,replace = T)
+table(z)
+summary(goodfit(z,type="binomial",method = "MinChisq"))
+summary(goodfit(z,type="pois",method = "MinChisq"))
+```
+
+## **6. Aim:** To Check the normality of the given data using (i) Shapiro-Wilk normality test (ii) Anderson-darling test, and (iii) normal quantile plot (Q-Q plot).
+
+```{r}
+library(nortest)
+h = c(40,26,39,14,42,18,25,43,46,27,15,44,40,38,31,
+46,52,25,35,35,19,47,19,26,35,44,48,32,30,20,33,29,
+34,41,43,18,35,30,14,26,43,22,33,44,45,36,39,31,12,
+29)
+
+# Define
+# H_0: Data follows Normal Distribution
+# H_1: Data does not follow Normal Distribution
+
+# (i) Shapiro-Wilk normality test
+shapiro.test(h)
+
+# (ii) Anderson Daring Test
+ad.test(h)
+
+# (iii) normal quantile plot (Q-Q plot)
+qqnorm(h, col="blue4",pch = 20)
+qqline(h, col="magenta",lwd = 1.5)
+grid()
+```
+$H_0$ is accepted.

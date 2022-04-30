@@ -1,0 +1,140 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+
+
+# Experiment 1
+
+**Name:** Jaswinderpal Singh\
+**Class:** M.Sc. Statistics, Sem 1\
+**Date:** October 6, 2021
+
+## 1(b) **Aim:** To construct histogram and Stem & leaf display of given data using R
+
+*Calculations:*
+
+```{r}
+z = c(76,57,74,100,73,77,88,77,51,62,149,86,57,72,
+      67,54,54,91,62,44,66,55,95,71,73,57,51,114,61,
+      42,78, 53,106,35,85,72,61,72,41,59,63,54,59,128
+      ,67,83,95,88,109,79,58,82,153,84,62,70,44,61,55,
+      69,59,50)
+hist(z,main="Histogram of BAL", col = "green4", border = "white")
+```
+
+\newpage
+
+```{r}
+stem(z)
+```
+
+## 1(c) **Aim:** To Compute Mean, Median, Q1, Q3, Geometric Mean and Harmonic Mean for given data using R.
+
+*Calculations:*
+
+```{r}
+mean(z)
+median(z)
+Q1 = quantile(z,0.25)
+Q1
+Q3 = quantile(z,0.75)
+Q3
+library(psych)
+geometric.mean(z)
+harmonic.mean(z)
+```
+
+\newpage
+
+## 2. **Aim:** To generate the given vector, store it in x and carry out computations.
+
+*Calculations:*
+
+```{r}
+x = c(1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 6, 12, 24, 15, 20)
+x
+```
+
+#### (a) Mean, Median, Mode, Quartiles, Range, Standard deviation, Variance, Coefficient of variation
+
+```{r}
+mean(x)
+median(x)
+# Since every value occurs with single frequency,therefore mode doesn't exist
+Q1 = quantile(x,0.25)
+Q2 = quantile(x,0.50)
+Q3 = quantile(x,0.75)
+Q1
+Q2
+Q3
+(Range = max(x)-min(x))
+sd(x)
+var(x)
+(cv = sd(x)/mean(x)*100)
+```
+
+#### (b) Summary
+
+```{r}
+summary(x)
+```
+
+#### (c) Sort ascending
+
+```{r}
+sort(x)
+```
+
+#### (d) Sort descending
+
+```{r}
+sort(x,decreasing = T)
+```
+
+#### (e) Order an index and check whether this is same as x[order(x)].
+
+```{r}
+order(x)
+x[order(x)]
+```
+
+\newpage
+
+### Further computations
+
+#### (a) **Aim:** To compute log(x), log(x) to base 10, log(x) to base 2, 3+log(x), sum(x), sin(x), tan(x), gamma(x), lgamma(x)   
+   
+```{r}
+log(x)
+log10(x)
+log2(x)
+3+log(x)
+sum(x)
+sin(x)
+tan(x)
+gamma(x)
+lgamma(x)
+```
+
+#### **(b) Aim:** To Compute x\^3, store in y, extract second element, (2,4)th element and elements from 2 to 7   
+
+```{r}
+y = x^3
+y
+y[2]
+y[c(2,4)]
+y[2:7]
+```
+
+\newpage
+
+#### **(c) Aim:** To Generate a vector with marks of 5 students and then draw a Bar diagram   
+   
+```{r}
+marks = c(45,65,55,98,76)
+marks
+names(marks) = c("A","B","C","D","E")
+barplot(marks, col="purple", border="black")
+```

@@ -1,0 +1,112 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+
+# Experiment 14
+     
+**Name:** Jaswinderpal Singh\
+**Class:** M.Sc. Statistics, Sem 1 \
+**Date:** December 11, 2021   
+    
+## **1. Aim:** To apply one and two sided single sample t test.
+     
+```{r}
+x1 = c(40, 26, 39, 14, 42, 18, 25, 43, 46, 27, 19, 47, 19, 
+       26, 35, 34, 15, 44, 40, 38, 31, 46, 52, 25, 35, 35, 
+       33, 29, 34, 41)
+
+#(i) and (ii)
+# H_0: mu = 32
+# H_1: mu != 32
+t.test(x1, mu=32)
+
+#(iii)
+# H_0: mu = 32
+# H_1: mu > 32
+t.test(x1, mu=32, alternative = "greater")
+```
+\newpage
+## **2. Aim:** To carry out two sample t test with equal and unequal, unknown population variances.
+```{r}
+X1 = c(74.1, 77.7, 74.0, 74.4, 78.8, 79.3, 72.2, 75.2, 78.2, 77.1, 78.4, 76.3, 75.8, 76.8, 82.8)
+Y1 = c(70.8, 74.9, 74.2, 70.4, 69.2, 77.4, 78.1, 72.8, 74.3, 74.7, 72.2, 76.8, 72.4)
+# (i) and (ii)
+## H_0: mu1 = mu2
+## H_1: mu1 != mu2
+
+# For equal and unknown population variances
+t.test(X1,Y1, var.equal = T)
+
+# For unequal and unknown population variances
+t.test(X1,Y1)
+```
+## **3. Aim:** To carry out paired t test
+    
+```{r}
+before = c(109, 112, 98, 114, 102, 97, 88, 101, 89, 91)
+after = c(115, 120, 99, 117, 105, 98, 91, 99, 93, 89)
+# H_0: There is no significant gain in weight as a result of the change of diet.
+# H_1: There is a significant gain in weight as a result of the change of diet.
+
+t.test(before, after, paired = T)
+```
+
+## **4. Aim:** To test that in the corresponding population, correlation coefficient is significantly different from zero
+   
+```{r}
+cor.test(before, after)
+```
+
+## **5. Aim:** To compute the densities, cdfs, inv cdfs, random sample for t distribution using R  
+   
+```{r}
+##(i) Probably density function of t-distribution:
+
+# (a) f(0), with df=8 
+dt(0,8)
+
+# (b) f(5), with df=15
+dt(5,15)
+
+# (c) To Generate a sequence x<- seq(-10,10,by=.01) and also y<- dt(x) with df=9, for t-distribution 
+x = seq(-10, 10, by=0.01)
+y = dt(x,9)
+
+# plot (x,y). Draw the curve on (x,y) plot.
+plot(x,y,pch=20,col="blue4") # plot(x,y)
+curve(dt(x,9),-10,10, lwd=2, col="red", add = TRUE)  #curve
+
+
+
+
+# (ii) Cumulative distribution function of t-distribution:
+
+# (a) F(3), with df=14 
+pt(3,14)
+
+# (b) F(0) with df=6
+pt(0,6)
+
+
+
+# (iii) Inverse cumulative distribution function of t-distribution:
+
+# (a) F^-1 (0), with df=3 
+qt(0,3)
+
+# ( b) F^-1 (0.6) with df=5
+qt(0.6,5)
+
+# (c) Generate a sequence x<- seq(0,.9 by=.01) and also y<- qt(x) with df=8, then plot (x,y).
+X = seq(0, 0.9, 0.01)
+Y = qt(X,8)
+plot(X,Y, pch=20 ,col="blue4")
+
+
+
+# (iv) To Generate a random sample of 50 observations from a t- distribution with df=12.
+rt(50,12)
+  
+```

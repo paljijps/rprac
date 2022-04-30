@@ -1,0 +1,48 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+
+# Experiment 2
+
+**Name:** Jaswinderpal Singh\
+**Class:** M.Sc. Statistics, Sem 1\
+**Date:** October 13, 2021
+
+## 2. **Aim:** Generate a vector of given observations Using R, compute first four central order moments, skewness and kurtosis.
+
+*Calculations:*
+
+```{r}
+ v = c(56,61,57,77,62,75,63,55,64,60,
+       60,57,61,57,67,62,69,67,68,59,
+       65,72,65,61,68,73,65,62,75,80)
+ v
+ # Compute first 4 central moments, skewness, kurtosis
+ vbar = mean(v)
+(m1 = sum(v-vbar)/length(v))  # first central moment 
+(m2 = sum((v-vbar)^2)/length(v))  # second central moment 
+(m3 = sum((v-vbar)^3)/length(v)) # third central moment 
+(m4 = sum((v-vbar)^4)/length(v)) # fourth central moment 
+
+#skewness
+sk = (m3^2)/(m2^3)
+sk   #positively skewed
+#kurtosis
+ku = m4/(m2^2) - 3
+ku   #platy-kurtic
+```
+
+\newpage
+
+## 3. **Aim:** Generate a random sample of 100 observations between 1 to 10 and count the frequency of each factor i.e. 1 to 10 using R. Also draw Bar-plot of the generated frequency table
+
+*Calculations:*
+
+```{r}
+d = sample(c(1:10),100,replace=T)
+d # Random Sample
+table(d) # Counting frequency
+barplot(table(d), col="green4") 
+```

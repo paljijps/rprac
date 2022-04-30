@@ -1,0 +1,79 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+
+# Experiment 15
+     
+**Name:** Jaswinderpal Singh\
+**Class:** M.Sc. Statistics, Sem 1 \
+**Date:** December 13, 2021     
+     
+## **1. Aim:** To apply one and two sided F test to compare two variances.
+```{r}
+X1 = c(12.47, 11.90, 12.77, 11.96, 12.78, 12.44, 12.13, 11.86, 12.25, 12.29)
+Y1 = c(12.86, 12.83, 12.46, 12.98, 12.22, 12.34, 12.46, 12.39)
+#
+
+#
+var.test(X1, Y1, conf.level = 0.99) # two sided 
+#
+
+#
+var.test(X1, Y1, alternative = "greater") 
+```
+
+## **2. Aim:** To find densities, cdfs, inv cdfs and random sample for F distribution.
+
+```{r}
+## (i) Probably density function of F-distribution:
+
+# (a) f(0), with df=5, 7 
+df(0,5,7)
+
+# (b) 5, with df=10, 3
+df(5,10,3)
+
+# (c) To Generate a sequence x<- seq(0,20,by=.1) and also y<- df(x) with df=5,7 for F-distribution
+x = seq(0,20, 0.1)
+x
+y = df(x,5,7)
+y
+
+# plot (x,y). Draw the curve on plot (x,y).
+plot(x,y, pch=20, col="blue4")
+curve(df(x,5,7), 0, 20, lwd = 2, col = "red", add = TRUE)
+
+
+# (ii) Cumulative distribution function of F-distribution:
+
+# (a) F(3), with df=4,3 
+pf(3,4,3)
+
+# (b) F(0) with df=6,4
+pf(0,6,4)
+
+
+
+
+# (iii) Inverse cumulative distribution function of F-distribution:
+
+# (a)F^-1 (0), with df=3,5 
+qf(0,3,5)
+
+# (b) F^-1 (0.6) with df=5 ,4
+qf(0.6,5,4)
+
+# (c) Generate a sequence x<- seq(0,.9 by=.01) and also y<- qf(x) with df=8, 6 then plot (x,y).
+X = seq(0, 0.9, 0.01)
+X
+Y = qf(X, 8, 6)
+Y
+plot(X,Y, pch=20, col="blue4")
+
+
+# (iv) Generate a random sample of 50 observations from a F-distribution with df=10,4.
+rf(50,10,4)
+
+```

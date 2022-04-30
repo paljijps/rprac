@@ -1,0 +1,79 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+
+# Experiment 3
+
+**Name:** Jaswinderpal Singh\
+**Class:** M.Sc. Statistics, Sem 1\
+**Date:** October 18, 2021\
+
+**1. Aim:** To calculate Karl Pearson and Spearman's correlation coefficients and to draw scatter plot for given data.
+
+*Calculations:*
+
+```{r}
+paper1 = c(45,55,60,58,60,65,68,70,75,80,85)
+paper2 = c(56,50,82,60,62,64,65,70,74,82,90)
+cor(paper1,paper2,method="pearson")  #Karl Pearson correlation coefficient
+cor(paper1,paper2,method="spearman")  #Spearman’s rank correlation coefficient
+plot(paper1,paper2, main = "Scatter Plot", col="blue4",pch=20)
+grid()
+```
+  
+\newpage
+
+**3. Aim:** To find regression equation, create scatter plot and other computations using R
+
+*Calculations:*
+
+```{r}
+x = c(39,65,62,90,82,75,25,98,36,78)
+y = c(47,53,58,86,62,68,60,91,51,84)
+#(a) To Find the regression equation of sales on advertisement expenses.
+yonx = lm(y~x)
+summary(yonx)
+coef(yonx)   
+```
+
+Hence, regression equation is $Y = 33.4397925 + 0.5009263*x$
+
+```{r}
+#(b) To Calculate the sales when an advertisement expense is 25.
+yat25 = 33.4397925+0.5009263*25 # Sales when expenditure is 25
+yat25
+
+#(c) Draw a scatter plot along with regression line.
+plot(x,y, main="Scatter Plot", xlab="expenses", ylab="sales",col="blue",pch=20)
+abline(33.4397925,0.5009263,col="red") #or abline(yonx)
+```
+
+\newpage
+
+**4. Aim:** To calculate BMI using R
+
+*Calculations:*
+
+```{r}
+wt = c(60,72,57,90,85)
+ht = c(1.75,1.80,1.65,1.90,1.85)
+bmi = wt/ht^2
+bmi
+```
+ 
+**5. Aim:** To generate sequences using R
+
+*Calculations:*
+
+```{r}
+#(i) To Generate a sequence from 1 to 20.
+1:20   
+
+#(ii) To Generate a sequence from 1 to 40 with increment of 2.
+seq(1,40,2)   
+
+#(iii) To Generate a sequence from 1 to 20 and then 30 to 40.
+c(1:20,30:40)
+```
