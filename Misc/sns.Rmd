@@ -1,0 +1,19 @@
+---
+title: "Untitled"
+author: "Jaswinderpal Singh"
+date: "1/8/2022"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{python}
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+sns.set_style(style="darkgrid")
+titanic = sns.load_dataset("titanic")
+
+sns.barplot(x = "who", y="alone",hue = "class",data=titanic)
+plt.show()
+```

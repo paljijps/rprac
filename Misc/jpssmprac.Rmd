@@ -1,0 +1,82 @@
+---
+output: pdf_document
+papersize: a4
+---
+**Name:** Jaswinderpal Singh\
+**Class:** M.Sc. Statistics, Sem 1 \
+**Roll No.** 32587   
+
+# Sol. 5
+
+## (a) To generate Random sample of size 30 from N(40,9) and arranging in Increasing order of magnitude 
+## (b) To computer summary statistics of above data
+
+```{r}
+sp = rnorm(30,mean=40, sd=3) # random sample from N(40,9)
+sort(sp) # arranging in increasing order of magnitude
+
+#(b) Summary statistics
+summary(sp)
+```
+
+## (c) To carry out correlation and regression analysis using R
+
+```{r}
+rba = c(3,5,8,4,7,10,2,1,6,9) #Judge A
+rbb = c(6,4,9,8,1,2,3,10,5,7) #Judge B
+cor(rba, rbb, method = "spearman") # Spearman's rank correlation
+plot(rba,rbb, pch=20,col="blue4", xlab = "Judge A", ylab = "Judge B") #scatter plot
+model = lm(rba~rbb) # Linear Regression model
+summary(model)
+coef(model)  # Coefficients
+abline(model, col="red") # drawing regression equation
+```
+
+## (d) To apply t test in case of equal but unknown variances.
+
+```{r}
+dietA = c(10,6,16,17,13,12,8,14,14)
+dietB = c(7,22,15,13,14,8,21,10,16,18)
+#(i) and (ii)
+t.test(dietA, dietB, var.equal = TRUE, conf.level=0.99)
+```
+
+## (e) To compute pdfs, cdfs, inverse cdfs and plots of distributions using R
+
+```{r}
+# pdf of chi-square
+#(i)
+dchisq(3,9)
+#(ii)
+dchisq(5,10)
+
+x = seq(0,20,by=0.1)
+y = dchisq(x,7)
+plot(x,y, pch=20, col="blue4")
+curve(dchisq(x,7),lwd=1.5,col="red",add=T)
+
+# cdf of t distribution
+#(i)
+pt(3,5)
+#(ii)
+pt(0,7)
+
+# inverse cdf of t distribution
+#(i)
+qt(0.3,8)
+#(ii)
+qt(0.6,8)
+```
+
+## (f) To solve Que 2(a) with R commands
+
+```{r,warning=FALSE}
+library(grid)
+library(vcd)
+mp = 0:5
+f = c(139,76,28,4,2,1)
+data = rep(mp,f)
+gf = goodfit(data, type = "poisson", method = "MinChisq")
+gf # fitting Poisson distribution
+summary(gf) # Testing goodness of fit
+```

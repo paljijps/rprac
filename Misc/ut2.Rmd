@@ -1,0 +1,30 @@
+
+```{r}
+Qx = c(0.62,0.66,0.80,0.80,1.00,1.12,1.23,1.33,1.40)
+qx = Qx/1000
+lx = c()
+dx = c()
+lx[1] = 90102
+i=1
+ while(i<=9)
+ {
+   dx[i]=lx[i]*qx[i]
+   lx[i+1] = lx[i]-dx[i]
+   i = i+1
+ }
+lx = lx[1:9]
+lx
+dx
+Lx = lx -(dx/2)
+Lx
+Tx = c()
+Tx[9] = 4842446.00
+k=1
+while(k<=9)
+{
+   Tx[9-k]=Lx[9-k]+Tx[10-k]
+   k = k+1
+}
+Tx
+exnot = Tx/lx
+```

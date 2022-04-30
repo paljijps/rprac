@@ -1,0 +1,43 @@
+
+```{r}
+library(MASS)
+A = rbind(c(1,-2,0),c(1,-1,2),c(0,1,1))
+U = matrix(c(-2,0,1,0,1,0,0,0,1),nrow=3)
+Uinv = solve(U)
+A
+U
+Uinv
+fractions(Uinv%*%A%*%U)
+```
+
+```{r}
+A = rbind(c(3,1,0,1), c(-1,5,4,1), c(0,0,2,0), c(0,0,0,4) )
+fractions(A)
+I = rbind(c(1,0,0,0), c(0,1,0,0), c(0,0,1,0), c(0,0,0,1))
+eigA = eigen(A)
+eigA$values
+```
+
+```{r}
+U = rbind(c(1,2,3),c(0,1,3),c(0,0,1))
+L = rbind(c(1,0,0), c(1,1,0), c(2,2,1))
+uinv = fractions(solve(U))
+linv = fractions(solve(L))
+ainv = fractions(uinv%*%linv)
+ainv %*% c(1,3,5)
+
+```
+
+```{r}
+A = cbind(c(1,5,11), c(3,7,13))
+Adag = solve(t(A) %*% A)%*% t(A)
+B = c(17,19,23)
+Adag%*%B
+```
+
+```{r}
+library(MASS)
+S = rbind(c(1,2), c(3,6) )
+ginv(S)
+
+```
