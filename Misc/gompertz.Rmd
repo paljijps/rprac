@@ -1,0 +1,133 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+---
+# Gompertz Curve 
+**Name:** Jaswinderpal Singh    
+**Class:** M.Sc. Statistics Sem 1   
+     
+**With log base 10**
+```{r}
+library(gt)
+year = 1920:1952
+Y = c(8.7,19.8,24.7,32.5,42.2,58.2,60.6,100.0,100.1,131.5,
+      117.9,157.3,152.0,211.3,194.8,252.1,297.6,267.1,247.1,
+      359.8,388.7,452.4,468.8,494.2,539.1,602.4,666.5,729.3,
+      846.7,782.7,955.5,865.4,845.0)
+t = 1:33
+y = log10(Y)
+df = data.frame("Year"=year,
+           "Consumption"=Y,
+           "t"=t,
+           "log10Y"=y)
+
+cols_align(df %>% gt(), align = c("center"))
+m = 11
+s1 = sum(y[1:11])
+s1
+s2 = sum(y[12:22])
+s2
+s3 = sum(y[23:33])
+s3
+b = ((s2-s3)/(s1-s2))^(1/m)
+A = ((s1-s2)*(1-b))/(b*(1-b^m)^2)
+A
+a = 10^(A)
+K = (s1*s3-s2^2)/(m*(s1-2*s2+s3))
+K
+k = 10^K
+k
+b
+a
+Trend = function(t){k*(a^(b^t))}
+# Trend value in 1930
+Trend(11)
+# Trend value in 1940
+Trend(21)
+# Trend value in 1960
+Trend(41)
+curve(Trend,from = 0,to= 33,xlab = "t",ylab = "Y(t)",col="blue")
+points(t,Y,pch=20,col="red")
+```
+
+    
+$S_1=$ `r s1`     
+$S_2=$ `r s2`   
+$S_3=$ `r s3`   
+   
+a = `r a`   
+b = `r b`   
+k = `r k`   
+    
+Reqd Gompertz Curve is   
+  $$Y_t = k{a^{b^t}}$$    
+    
+*Trend Values:*   
+   
+Year          | Trend Value
+------------- | -------------
+1930          | `r Trend(11)`
+1940          | `r Trend(21)`
+1960          | `r Trend(41)`   
+
+\newpage  
+**With log base e**
+```{r}
+Year = 1920:1952
+Y = c(8.7,19.8,24.7,32.5,42.2,58.2,60.6,100.0,100.1,131.5,
+      117.9,157.3,152.0,211.3,194.8,252.1,297.6,267.1,
+      247.1,359.8,388.7,452.4,468.8,494.2,539.1,602.4,
+      666.5,729.3,846.7,782.7,955.5,865.4,845.0)
+t = 1:33
+y = log(Y)
+Df = data.frame(Year,
+           'Consumption'=Y,t, 'lnY'=y)
+cols_align(Df %>% gt(), align = c("center"))
+m = 11
+s1 = sum(y[1:11])
+s1
+s2 = sum(y[12:22])
+s2
+s3 = sum(y[23:33])
+s3
+b = ((s2-s3)/(s1-s2))^(1/m)
+A = ((s1-s2)*(1-b))/(b*(1-b^m)^2)
+A
+a = exp(A)
+K = (s1*s3-s2^2)/(m*(s1-2*s2+s3))
+K
+k = exp(K)
+k
+a
+b
+Trend = function(t){k*(a^(b^t))}
+# Trend value in 1930
+Trend(11)
+# Trend value in 1940
+Trend(21)
+# Trend value in 1960
+Trend(41)
+curve(Trend,from = 0,to= 33,xlab = "t",ylab = "Y(t)",col="red")
+points(t,Y,pch=20,col="blue")
+```
+       
+       
+$S_1=$ `r s1`     
+$S_2=$ `r s2`   
+$S_3=$ `r s3`    
+    
+a = `r a`   
+b = `r b`   
+k = `r k`    
+    
+Reqd Gompertz Curve is   
+  $$Y_t = ka^{b^t}$$    
+      
+*Trend Values:*   
+   
+Year  | Trend Value
+------|-------------
+1930  | `r Trend(11)`
+1940  | `r Trend(21)`
+1960  | `r Trend(41)`   

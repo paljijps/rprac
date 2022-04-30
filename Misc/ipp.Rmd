@@ -1,0 +1,20 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+JPS
+# IPP solution with R
+
+```{r}
+library(MASS)
+library(lpSolve)
+
+objective.in = c(1,4)
+const.mat = matrix(c(2,4,5,3), nrow=2, byrow=TRUE)
+const.dir = c("<=","<=")
+const.rhs = c(7,15)
+optimum = lp(direction="max", objective.in, const.mat,const.dir, const.rhs,int.vec = c(1,2))
+optimum
+optimum$solution
+```
